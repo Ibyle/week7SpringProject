@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Product Application</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 50px;
+        }
+
+        .table {
+            width: 100%;
+            margin-bottom: 20px;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .table th, .table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: center;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+        .btn-danger {
+            background-color: #dc3545;
+            border-color: #dc3545;
+        }
+
+        .btn-success {
+            background-color: #28a745;
+            border-color: #28a745;
+        }
+    </style>
+</head>
+<body>
+<include th:replace="menu-dashboard.html"></include>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Welcome <span th:text="${userID}"></span></h2>
+            <a href="/user/logout">Logout</a>
+
+            <div class="input-group mb-3">
+                <input type="text" class="form-control" placeholder="Search for product" aria-label="Search" aria-describedby="basic-addon2">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-secondary" type="button">Search</button>
+                </div>
+            </div>
+            <div th:text="${cartItems}"></div>
+<!--            <p>Total Items in Cart: <span id="cartCounter" class="badge badge-info">0</span></p>-->
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>Product Image</th>
+                    <th>Product Name</th>
+                    <th>Categories</th>
+                    <th>Price</th>
+                    <th>Quantity</th>
+                    <th>Add to Cart</th>
+                    <th>Delete</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="product, iterStat : ${products}">
+                    <td th:text="${product.productImage}"></td>
+                    <td th:text="${product.productName}"></td>
+                    <td th:text="${product.categories}">
+                        <select onclick="updateInput()">
+                            <option>Electronic</option>
+                            <option>Food Stuff</option>
+
+                        </select>
+                    </td>
+                    <td th:text="${product.price}"></td>
+                    <td th:text="${product.quantity}">
+                        <input type="button" value="-" onclick="decreaseNumber()">
+                        <select id="numbers" name="numbers" onchange="updateInput()">
+                            <option value="1">One</option>
+                            <option value="2">Two</option>
+                            <option value="3">Three</option>
+                            <option value="4">Four</option>
+                        </select>
+                        <input type="button" value="+" onclick="increaseNumber()">
+                        <input type="number" id="manualInput" oninput="updateSelect()">
+
+
+                    </td>
+
+                   <td><a class="btn btn-primary" th:attr="data-product-id=${product.id}" th:href="@{/products/add-cart(cart=${product.id})}" onclick="updateCartCounter(this)">Add to Cart</a></td>
+<!--                    <td><button class="btn btn-danger" type="button" onclick="deleteItem(${iterStat.index})">Delete</button></td>-->
+<!--                    <td ><a th:href="@{/products/add-cart(cart=${product.id})}">Add to cart</a></td>-->
+                </tr>
+                </tbody>
+            </table>
+
+            <a class="btn btn-success" href="/products/payment">Proceed to Checkout</a>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function increaseNumber() {
+        var select = document.getElementById("numbers");
+        select.selectedIndex = Math.min(select.selectedIndex + 1, select.options.length - 1);
+    }
+
+    function decreaseNumber() {
+        var select = document.getElementById("numbers");
+        select.selectedIndex = Math.max(select.selectedIndex - 1, 0);
+    }
+
+    function updateInput() {
+        var select = document.getElementById("numbers");
+        var input = document.getElementById("manualInput");
+        input.value = select.value;
+    }
+
+    function updateSelect() {
+        var select = document.getElementById("numbers");
+        var input = document.getElementById("manualInput");
+        select.value = input.value;
+    }
+</script>
+<!--&lt;!&ndash; Bootstrap JS and Popper.js &ndash;&gt;-->
+<!--<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>-->
+<!--<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>-->
+<!--<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>-->
+<!--<script>-->
+<!--    function updateCartCounter(element) {-->
+<!--        var cartCounter = document.getElementById('cartCounter');-->
+<!--        var currentCount = parseInt(cartCounter.innerText);-->
+<!--        cartCounter.innerText = currentCount + 1;-->
+
+<!--        var productId = element.getAttribute('data-product-id');-->
+<!--        // Now you can use the productId in your add to cart logic, if needed-->
+<!--        console.log('Product added to cart:', productId);-->
+<!--    }-->
+
+<!--    function deleteItem(index) {-->
+<!--        // Assuming your server endpoint for deleting an item is "/products/delete"-->
+<!--        $.ajax({-->
+<!--            type: 'DELETE',-->
+<!--            url: '/products/delete/' + index, // Adjust the URL to match your server endpoint-->
+<!--            success: function (data) {-->
+<!--                // Update the cart counter on success-->
+<!--                updateCartCounter();-->
+
+<!--                // Implement any additional logic if needed-->
+<!--                console.log("Item deleted successfully");-->
+<!--            },-->
+<!--            error: function (error) {-->
+<!--                console.error("Error deleting item:", error);-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+<!--</script>-->
+</body>
+</html>

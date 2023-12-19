@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Product Application</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #000;
+        }
+
+        .money-rain {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: url('https://upload.wikimedia.org/wikipedia/commons/7/7b/Obverse_of_the_series_2009_%24100_Federal_Reserve_Note.jpg') center/cover no-repeat;
+            opacity: 0.7;
+            animation: moneySplash 10s linear infinite, fadeIn 3s ease-in-out;
+        }
+
+        @keyframes moneySplash {
+            0% {
+                transform: translateY(-50%) translateX(-50%);
+            }
+            100% {
+                transform: translateY(100vh) translateX(100vw);
+            }
+        }
+
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 0.7;
+            }
+        }
+    </style>
+</head>
+<body>
+<include th:replace="menu.html"></include>
+<div>
+    <a href="/admin/sign-up">Sign up</a><br>
+    <a href="/admin/login">Admin</a>
+</div>
+
+<!--&lt;!&ndash; Money splash elements &ndash;&gt;-->
+<!--<script>-->
+<!--    // Create money splash drops dynamically-->
+<!--    document.addEventListener("DOMContentLoaded", function() {-->
+<!--        const moneySplashContainer = document.body;-->
+<!--        const numberOfDrops = 50;-->
+
+<!--        for (let i = 0; i < numberOfDrops; i++) {-->
+<!--            const moneyDrop = document.createElement("div");-->
+<!--            moneyDrop.className = "money-rain";-->
+<!--            moneyDrop.style.left = `${Math.random() * window.innerWidth}px`;-->
+<!--            moneyDrop.style.top = `${Math.random() * window.innerHeight}px`;-->
+<!--            moneySplashContainer.appendChild(moneyDrop);-->
+<!--        }-->
+
+<!--        // Reload the page after 10 seconds-->
+<!--        setTimeout(function() {-->
+<!--            location.reload();-->
+<!--        }, 10000);-->
+<!--    });-->
+<!--</script>-->
+
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+</body>
+</html>

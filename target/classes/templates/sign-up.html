@@ -1,0 +1,126 @@
+<!--<!DOCTYPE html >-->
+<!--<html lang="en" xmlns:th="https://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Product Application</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<include th:replace="menu.html"></include>-->
+<!--Sign Up-->
+
+<!--<form method="post" th:action="@{/user/register}" th:object="${user}">-->
+<!--   Username:<input th:field="*{username}">-->
+<!--    FullName:<input th:field="*{fullName}">-->
+<!--    Password:<input th:field="*{password}" type="password">-->
+<!--    <button type="submit">Sign up</button>-->
+
+<!--</form>-->
+<!--</body>-->
+<!--</html>-->
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Product Application</title>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <style>
+        body {
+            font-family: "Arial", sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100%;
+            background: url('https://www.frenchlearner.com/wp-content/uploads/2023/03/musical-instruments.png') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .container {
+            text-align: center;
+            margin-top: 80px;
+            padding: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            padding: 20px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1001;
+        }
+
+        .form-container button {
+            width: 100%;
+            margin-top: 15px;
+        }
+
+        .signup-button {
+            background-color: #007BFF;
+        }
+
+        .signup-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Include the menu -->
+<include th:replace="menu.html"></include>
+
+<!--<div class="container">-->
+<!--    <div class="form-container" id="signup-form">-->
+<!--        <h2>Sign up</h2>-->
+<!--        <form method="post" th:action="@{/user/register}" th:object="${user}">-->
+<!--           Username:<input th:field="*{username}">-->
+<!--            FullName:<input th:field="*{fullName}">-->
+<!--            Password:<input th:field="*{password}" type="password">-->
+<!--            <button type="submit">Sign up</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+<div class="container">
+    <div class="form-container" >
+<form method="post" action="/user/sign-up" th:object="${user}">
+    Username:<input th:field="*{username}">
+    FullName:<input th:field="*{fullName}">
+    Password:<input th:field="*{password}" type="password">
+    <button type="submit">Sign up</button>
+
+
+</form>
+    </div></div>
+<!--    </div></div>-->
+<!--<div class="container">-->
+<!--    <div class="form-container" id="signup-form">-->
+<!--        <h2>Login</h2>-->
+<!--        <form method="post" th:action="@{/user/register}" th:object="${user}">-->
+<!--            <label for="username">Email:</label>-->
+<!--            <input type="text" id="username" name="username" th:field="*{username}">-->
+<!--            <label for="username">Fullname:</label>-->
+<!--            <input type="text" id="fullname" name="fullname" th:field="*{fullname}">-->
+<!--            <label for="password">Password:</label>-->
+<!--            <input type="password" id="password" name="password" th:field="*{password}">-->
+<!--            <button type="submit" class="login-button">Login</button>-->
+<!--        </form>-->
+<!--    </div>-->
+<!--</div>-->
+
+<script src="https://www.w3schools.com/lib/w3.js"></script>
+<script>
+    // You can add additional scripts or animations here if needed
+</script>
+
+</body>
+</html>
+

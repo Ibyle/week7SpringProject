@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content= "width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+
+<!--  <title>Admin Page</title>-->
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url("");
+      background-size: cover;
+    }
+
+    /* Add other styles as needed for your content */
+    .content {
+      text-align: center;
+      padding: 50px;
+      color: white;
+    }
+
+    label {
+      display: block;
+    }
+  </style>
+</head>
+
+
+  <body>
+<th:block th:replace="menu-dashboard.html"></th:block>
+
+
+
+
+<a th:href="@{/product?admin=view-product}">View Product</a>
+
+<h1>Welcome to the Admin Dashboard</h1>
+
+
+<form method="post" action="product?edit=product">
+  Product Name:<label>
+  <input name="product-name" th:value="${editProduct.name}">
+</label>
+  Product Price:<label>
+  <input name="product-price" th:value="${editProduct.productPrice}">
+</label>
+  Product Quantity:<label>
+  <input name="product-quantity" th:value="${editProduct.quantity}">
+</label>
+  Product Category:<label>
+  <input name="product-category" th:value="${editProduct.category}">
+</label>
+  Product Image:<label>
+  <input name="product-image" th:value="${editProduct.imagePath}">
+</label>
+  <input type="hidden" name="id" th:value="${editProduct.id}">
+  <button type="submit">Edit Product</button>
+</form>
+
+<!--<form method="post" action="product?admin=product">-->
+<!--  Product Name:<label>-->
+<!--  <input name="product-name">-->
+<!--</label>-->
+<!--  Product Image:<label>-->
+<!--  <input name="product-image">-->
+<!--</label>-->
+<!--  Product Price:<label>-->
+<!--  <input name="product-price">-->
+<!--</label>-->
+<!--  Product Quantity:<label>-->
+<!--  <input name="product-quantity">-->
+<!--</label>-->
+<!--  Product Category:<label>-->
+<!--  <input name="product-category">-->
+<!--</label>-->
+<!-- Add Product Form -->
+<form th:action="@{/products/add}" method="post">
+
+  <!-- Add your form fields for adding a product here -->
+  <button type="submit">Add Product</button>
+</form>
+
+<!-- List of Products with Edit and Delete Links -->
+<ul>
+  <li th:each="product : ${products}">
+    <span th:text="${product.name}"></span>
+    <a th:href="@{/products/edit/{id}(id=${product.id})}">Edit</a>
+    <a th:href="@{/products/delete/{id}(id=${product.id})}">Delete</a>
+  </li>
+</ul>
+</body>
+</html>
+
+

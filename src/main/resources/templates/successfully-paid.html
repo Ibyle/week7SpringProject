@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Successful-paid</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <!-- W3.CSS -->
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <!-- Custom Styles -->
+  <style>
+    /* Add your custom styles here */
+    body, html {
+      height: 100%;
+      margin: 0;
+    }
+    .bg {
+      animation: gradientAnimation 10s ease infinite;
+      height: 100%;
+      background-size: 400% 400%;
+      background-image: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+    }
+    @keyframes gradientAnimation {
+      0% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+    .confirmation {
+      text-align: center;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+    }
+    .confirmation h1 {
+      font-size: 3em;
+      margin-bottom: 20px;
+    }
+    .confirmation p {
+      font-size: 1.2em;
+    }
+  </style>
+</head>
+<body>
+<div class="bg"></div>
+<div class="w3-container confirmation">
+  <h1>Payment Successful!</h1>
+  <p>Thank you for your purchase.</p>
+  <a href="/products/all">Continue Shopping</a>
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

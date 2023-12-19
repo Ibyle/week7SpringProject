@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Product Catalog</title>
+  <link rel="stylesheet" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+<div class="container">
+  <h1>Product Catalog</h1>
+  <table class="table">
+    <thead>
+    <tr>
+      <th>Image</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="product : ${products}">
+      <td><img th:src="@{${product.image}}" alt="Product Image" width="50" /></td>
+      <td th:text="${product.name}"></td>
+      <td th:text="${product.price}"></td>
+      <td><input type="number" th:field="*{quantities[__${product.id}__]}" min="0" /></td>
+      <td><button type="submit" class="btn btn-primary" th:attr="data-product-id=${product.id}" onclick="addToCart(this)">Add to Cart</button></td>
+    </tr>
+    </tbody>
+  </table>
+</div>
+
+<script th:src="@{/js/jquery.min.js}"></script>
+<script th:src="@{/js/bootstrap.min.js}"></script>
+<script>
+  function addToCart(button) {
+    var productId = $(button).data('product-id');
+    var quantity = $('input[name="quantities[' + productId + ']"]').val();
+    // Send an AJAX request to add the product to the cart
+    // You'll need to implement this functionality on the backend
+  }
+</script>
+</body>
+</html>
